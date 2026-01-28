@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-
+@Table(name = "users")
 @Entity
 public class User {
     @Id
@@ -26,7 +26,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Roles role;
 
