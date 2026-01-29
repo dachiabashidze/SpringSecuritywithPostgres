@@ -21,7 +21,7 @@ public class SecurityConfig {
                 .httpBasic(basic->{})
                 .formLogin(form-> form
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/homepage")
+                        .defaultSuccessUrl("/members")
                         .permitAll()
                 )
                 .logout(logout->logout
