@@ -18,12 +18,10 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return user.getRole().stream()
+        return user.getRole()
+                .stream()
                 .map(role-> new SimpleGrantedAuthority("ROLE_"+role.name()))
                 .toList();
-    }
-    public String getEmail(){
-        return user.getEmail();
     }
     @Override
     public String getPassword() {
@@ -32,7 +30,7 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return user.getEmail();
     }
 
     @Override
