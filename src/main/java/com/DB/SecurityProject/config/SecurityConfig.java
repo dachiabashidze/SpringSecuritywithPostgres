@@ -47,7 +47,13 @@ public class SecurityConfig {
                 )
 //                .httpBasic(basic->{})
                 .csrf(AbstractHttpConfigurer::disable)
-                .formLogin(AbstractHttpConfigurer::disable)
+                .formLogin(form -> form
+                        .loginPage("/login.html")      // your page
+                        .loginProcessingUrl("/login") // Spring intercepts this
+                        .defaultSuccessUrl("/members", true)
+                        .failureUrl("/login.html?error")
+                        .permitAll()
+                )
                 .logout(logout->logout
                         .logoutUrl("/logout")
                         .permitAll()

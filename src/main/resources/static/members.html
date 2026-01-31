@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Members</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        padding: 20px;
+    }
+    h2 {
+        text-align: center;
+    }
+    table {
+        width: 50%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+    th {
+        background: #007bff;
+        color: white;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Members List</h2>
+
+<table id="membersTable">
+  <thead>
+  <tr>
+    <th>Username</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Users will be inserted here -->
+  </tbody>
+</table>
+
+<script>
+  async function loadMembers() {
+      try {
+          const response = await fetch("/members", { credentials: "same-origin" });
+          if (!response.ok) throw new Error("Failed to fetch members");
+
+          const users = await response.json();
+
+          const tbody = document.getElementById("membersTable").querySelector("tbody");
+          tbody.innerHTML = "";
+
+          users.forEach(user => {
+              const row = document.createElement("tr");
+              const cell = document.createElement("td");
+              cell.textContent = user.username;  // only username
+              row.appendChild(cell);
+              tbody.appendChild(row);
+          });
+
+      } catch (err) {
+          console.error(err);
+          alert("Could not load members");
+      }
+  }
+
+  // Load members when page opens
+  window.onload = loadMembers;
+</script>
+
+</body>
+</html>
