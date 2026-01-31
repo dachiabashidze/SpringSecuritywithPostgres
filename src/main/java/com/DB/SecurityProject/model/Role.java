@@ -1,6 +1,6 @@
 package com.DB.SecurityProject.model;
 
-public enum Roles {
+public enum Role {
     USER,
     ADMIN
 }
