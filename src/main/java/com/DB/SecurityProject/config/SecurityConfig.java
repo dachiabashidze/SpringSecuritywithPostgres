@@ -32,8 +32,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http){
         http
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/login", "/register").permitAll()
+                        .requestMatchers("/",
+                                "/register",
+                                "/login",
+                                "/register.html",
+                                "/login.html",
+                                "/css/**",
+                                "/js/**",
+                                "/images/**").permitAll()
                         .anyRequest().authenticated()
 
                 )
