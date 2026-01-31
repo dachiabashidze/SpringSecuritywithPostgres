@@ -19,6 +19,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    // implement SessionRegistry, to find out which users are loggin in currently
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -50,7 +52,7 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/login.html")      // your page
                         .loginProcessingUrl("/login") // Spring intercepts this
-                        .defaultSuccessUrl("/members", true)
+                        .defaultSuccessUrl("/members.html", true)
                         .failureUrl("/login.html?error")
                         .permitAll()
                 )
