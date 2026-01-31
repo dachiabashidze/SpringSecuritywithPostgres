@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/members")
 public class UserController {
     UserService userService;
     UserController(UserService userService){
         this.userService=userService;
     }
 
-    @GetMapping
+    @GetMapping("/members")
     public List<UserDto> findAll(){
         return userService.findAll();
     }
