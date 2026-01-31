@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 8px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .msg {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Register</h2>
+
+    <label for="username"></label><input id="username" type="text" placeholder="Username" />
+    <label for="email"></label><input id="email" type="email" placeholder="Email" />
+    <label for="password"></label><input id="password" type="password" placeholder="Password" />
+
+    <button onclick="register()">Register</button>
+
+    <div class="msg" id="message"></div>
+</div>
+
+<script>
+    async function register() {
+        const data = {
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        };
+
+        try {
+            const response = await fetch("/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            const text = await response.text();
+            document.getElementById("message").innerText = text;
+
+        } catch (err) {
+            document.getElementById("message").innerText = "Registration failed";
+        }
+    }
+</script>
+
+</body>
+</html>
