@@ -33,7 +33,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
 
                 )
-                .httpBasic(basic->{})
+//                .httpBasic(basic->{})
                 .formLogin(form-> form
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/members",true)
