@@ -37,10 +37,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/",
-                                "/register",
-                                "/login",
+                                "/api/register",
+                                "/api/login",
                                 "/register.html",
                                 "/login.html",
+                                "/api/members",
                                 "/css/**",
                                 "/js/**",
                                 "/images/**").permitAll()
@@ -48,12 +49,10 @@ public class SecurityConfig {
 
                 )
 //                .httpBasic(basic->{})
-                .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(form -> form
-                        .loginPage("/login.html")      // your page
-                        .loginProcessingUrl("/login") // Spring intercepts this
-                        .defaultSuccessUrl("/members.html", true)
-                        .failureUrl("/login.html?error")
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/members", true)
+                        .failureUrl("/login?error")
                         .permitAll()
                 )
                 .logout(logout->logout

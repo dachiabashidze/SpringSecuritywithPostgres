@@ -75,13 +75,13 @@
   // Function for profile button
   function goToProfile() {
       // Always goes to the logged-in user's profile page
-      window.location.href = '/profile.html';
+      window.location.href = '/profile';
   }
 
   // Load members table
   async function loadMembers() {
       try {
-          const response = await fetch("/members", { credentials: "same-origin" });
+          const response = await fetch("/api/members", { credentials: "same-origin" });
           if (!response.ok) throw new Error("Failed to fetch members");
 
           const users = await response.json();
