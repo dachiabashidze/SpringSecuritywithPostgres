@@ -1,6 +1,6 @@
 package com.DB.SecurityProject.service;
 
-import com.DB.SecurityProject.model.SecurityUser;
+import com.DB.SecurityProject.model.CustomUserDetails;
 import com.DB.SecurityProject.model.User;
 import com.DB.SecurityProject.repository.UserRepository;
 import org.jspecify.annotations.NonNull;
@@ -27,6 +27,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                 );
 
 
-        return new SecurityUser(user);
+        return new CustomUserDetails(user);
     }
 }

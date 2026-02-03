@@ -1,6 +1,5 @@
 package com.DB.SecurityProject.model;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,11 +7,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public class SecurityUser implements UserDetails {
+public class CustomUserDetails implements UserDetails {
 
     private final User user;
 
-    public SecurityUser(User user){
+    public CustomUserDetails(User user){
         this.user=user;
     }
 
@@ -27,9 +26,16 @@ public class SecurityUser implements UserDetails {
 
     @Override
     public String getUsername() {
+        return user.getUsername();
+    }
+
+    public String getEmail() {
         return user.getEmail();
     }
 
+    public Long getId(){
+        return user.getId();
+    }
     @Override
     public boolean isAccountNonExpired() {
         return true;

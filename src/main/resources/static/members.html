@@ -9,21 +9,43 @@
         background: #f4f4f4;
         padding: 20px;
     }
+
     h2 {
         text-align: center;
     }
+
+    .profile-btn-container {
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+    .profile-btn {
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .profile-btn:hover {
+        background-color: #0056b3;
+    }
+
     table {
-        width: 50%;
-        margin: 20px auto;
+        width: 60%;
+        margin: 0 auto;
         border-collapse: collapse;
         background: white;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
     th, td {
         padding: 10px;
         border-bottom: 1px solid #ddd;
         text-align: left;
     }
+
     th {
         background: #007bff;
         color: white;
@@ -31,6 +53,10 @@
   </style>
 </head>
 <body>
+
+<div class="profile-btn-container">
+  <button class="profile-btn" onclick="goToProfile()">My Profile</button>
+</div>
 
 <h2>Members List</h2>
 
@@ -46,6 +72,13 @@
 </table>
 
 <script>
+  // Function for profile button
+  function goToProfile() {
+      // Always goes to the logged-in user's profile page
+      window.location.href = '/profile.html';
+  }
+
+  // Load members table
   async function loadMembers() {
       try {
           const response = await fetch("/members", { credentials: "same-origin" });
@@ -58,9 +91,9 @@
 
           users.forEach(user => {
               const row = document.createElement("tr");
-              const cell = document.createElement("td");
-              cell.textContent = user.username;  // only username
-              row.appendChild(cell);
+              const usernameCell = document.createElement("td");
+              usernameCell.textContent = user.username;
+              row.appendChild(usernameCell);
               tbody.appendChild(row);
           });
 
@@ -70,7 +103,6 @@
       }
   }
 
-  // Load members when page opens
   window.onload = loadMembers;
 </script>
 
