@@ -5,6 +5,7 @@ import com.DB.SecurityProject.dto.RegisterRequest;
 import com.DB.SecurityProject.dto.UserDto;
 import com.DB.SecurityProject.model.CustomUserDetails;
 import com.DB.SecurityProject.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest){
+    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest registerRequest){
         userService.register(registerRequest);
         return ResponseEntity.ok("User registered successfully");
     }
