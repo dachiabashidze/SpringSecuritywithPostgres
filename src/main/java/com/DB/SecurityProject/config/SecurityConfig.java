@@ -38,10 +38,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/",
                                 "/api/register",
-                                "/api/login",
+                                "/login",
+                                "/register",
                                 "/register.html",
                                 "/login.html",
-                                "/api/members",
                                 "/css/**",
                                 "/js/**",
                                 "/images/**").permitAll()
@@ -51,6 +51,7 @@ public class SecurityConfig {
 //                .httpBasic(basic->{})
                 .formLogin(form -> form
                         .loginPage("/login")
+                        .usernameParameter("email")
                         .defaultSuccessUrl("/members", true)
                         .failureUrl("/login?error")
                         .permitAll()
